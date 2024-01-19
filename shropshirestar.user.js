@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MNA paywalls
-// @version      0.1
+// @version      0.2
 // @description  Remove stupid MNA paywalls
 // @author       jtylr
 
@@ -11,6 +11,7 @@
 
 
 // @match        https://www.shropshirestar.com/*
+// @match        https://www.expressandstar.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=shropshirestar.com
 // @require      https://code.jquery.com/jquery-3.4.1.min.js
 // @grant        none
