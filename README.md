@@ -12,7 +12,7 @@ You'll need a userscript manager in your browser:
 - https://www.tampermonkey.net/
 - https://addons.mozilla.org/en-GB/firefox/addon/greasemonkey/
 
-- Click this link and let the manager install it: https://github.com/jtylr/shropshirestar-paywall/raw/master/shropshirestar.user.js
+- Click this link and let the manager install it: [install](https://raw.githubusercontent.com/jtylr/shropshirestar-paywall/master/shropshirestar.user.js)
 
 ## Notes
 
