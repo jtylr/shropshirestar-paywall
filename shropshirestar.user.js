@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MNA paywalls
-// @version      0.2
+// @version      0.3
 // @description  Remove stupid MNA paywalls
 // @author       jtylr
 
@@ -27,9 +27,10 @@
         var content = Fusion.globalContent.content;
         console.log(content)
 
-        let proseArea = $($('.prose')[1]).find('div')[0]
+        //let proseArea = $($('.prose')[1]).find('div')[0]
+        let proseArea = $($('.prose')[1])
         //if ($('.bg-plus-200').length) {
-        if ($($('.relative time')[0]).closest('.flex.flex-wrap.items-stretch.gap-2').find('.bg-plus-500').length) {
+        if ($($('.relative time')[0]).closest('.flex.flex-wrap.items-stretch.gap-2').find('.bg-plus-500').length || true) {
             $('.bg-plus-200').addClass('prose')
             $('.absolute.to-white').remove()
             $(proseArea).empty();
@@ -61,7 +62,7 @@
             }
 
             setTimeout(() => {
-                $(proseArea).append(html)
+                $(proseArea).html(html)
             });
         }
 
