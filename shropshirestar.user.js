@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MNA paywalls
-// @version      0.3
+// @version      0.4
 // @description  Remove stupid MNA paywalls
 // @author       jtylr
 
@@ -25,17 +25,20 @@
     $(document).ready(() => {
         // Load in article content
         var content = Fusion.globalContent.content;
-        console.log(content)
 
-        //let proseArea = $($('.prose')[1]).find('div')[0]
         let proseArea = $($('.prose')[1])
-        //if ($('.bg-plus-200').length) {
+
+        let articleImage = proseArea.find('.w-full')
+
         if ($($('.relative time')[0]).closest('.flex.flex-wrap.items-stretch.gap-2').find('.bg-plus-500').length || true) {
             $('.bg-plus-200').addClass('prose')
             $('.absolute.to-white').remove()
             $(proseArea).empty();
 
             let html = '';
+            if (articleImage.length) {
+                html += $(articleImage).html()
+            }
             let skipFirstP = false;
             for (let c in content) {
                 let cd = content[c]
