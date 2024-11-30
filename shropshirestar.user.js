@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MNA paywalls
-// @version      0.4
+// @version      0.5
 // @description  Remove stupid MNA paywalls
 // @author       jtylr
 
@@ -58,6 +58,16 @@
                         break
                     case 'h':
                         html += '<h'+cd.level+'>'+cd.content+'</h'+cd.level+'>'
+                        break;
+                    case 'li':
+                        html += '<'+cd.listType+'>';
+                        for (let i = 0; i<cd.items.length;i++){
+                            let item = cd.items[i];
+                            html += '<li><'+item.type+'>';
+                            html += item.content;
+                            html += '</'+item.ype+'></li>';
+                        }
+                        html += '</'+cd.listType+'>';
                         break;
                     default:
                         console.log('Unhandled type: ' + cd.type)
