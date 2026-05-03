@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MNA paywalls
-// @version      0.7
+// @version      0.8
 // @description  Remove stupid MNA paywalls
 // @author       jtylr
 // @homepageURL  https://github.com/jtylr/shropshirestar-paywall/
@@ -21,6 +21,22 @@
     // Set subscriber cookie early
     document.cookie = 'sub_resource=standard; path=/; domain=shropshirestar.com; max-age=86400; SameSite=Lax';
     document.cookie = 'sub_resource=standard; path=/; max-age=86400; SameSite=Lax';
+
+    // Protect article paragraphs from being removed by Piano
+    const origRemove = Element.prototype.remove;
+    Element.prototype.remove = function() {
+        if (this.matches && this.matches('div[data-testid="article-content article-paragraph"], div.markup[data-testid*="article-paragraph"]')) {
+            return;
+        }
+        return origRemove.call(this);
+    };
+    const origRemoveChild = Node.prototype.removeChild;
+    Node.prototype.removeChild = function(child) {
+        if (child.matches && child.matches('div[data-testid="article-content article-paragraph"], div.markup[data-testid*="article-paragraph"]')) {
+            return child;
+        }
+        return origRemoveChild.call(this, child);
+    };
 
     const css = document.createElement('style');
     css.textContent = `
