@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         MNA paywalls
-// @version      0.8
+// @version      0.9
 // @description  Remove stupid MNA paywalls
 // @author       jtylr
 // @homepageURL  https://github.com/jtylr/shropshirestar-paywall/
@@ -133,7 +133,12 @@
     `;
     document.documentElement.appendChild(css);
 
+    function isArticlePage() {
+        return !!document.querySelector('article[data-testid="article-page"]');
+    }
+
     function boostImageQuality() {
+        if (!isArticlePage()) return;
         const up = (url) => url
             .replace(/(\bwidth=)\d+/g, '$1' + '1200')
             .replace(/(\bquality=)\d+/g, '$1' + '85');
@@ -262,6 +267,7 @@
         .replace(/(\bwidth=)\d+/g, '$1' + '1200')
         .replace(/(\bquality=)\d+/g, '$1' + '85');
     const imgObserver = new MutationObserver((mutations) => {
+        if (!isArticlePage()) return;
         mutations.forEach(m => {
             m.addedNodes.forEach(node => {
                 if (node.nodeType === 1) {
@@ -288,3 +294,4 @@
         });
     }
 })();
+
